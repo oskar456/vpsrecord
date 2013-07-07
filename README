@@ -1,0 +1,21 @@
+Digital PDC/VPS analyzer/recorder
+=================================
+
+This is a simple DVB TS recorder with VPS Programme Delivery Control [ETSI EN
+300 231][1] support. It requires TV channel to broadcast VPS data on line 16 of
+Vertical Blanking Interval or PDC descriptors in Teletext packet 8/30/2. It
+automatically starts recording when the programme really starts and stop
+recording after programme finish.
+
+This tool works as a filter, copying MPEG2-TS from standard input to standard
+output when the programme should be recorded and discarding input otherwise.
+After the end of the programme, the tool exits.
+
+[1]: http://webapp.etsi.org/workprogram/Report_WorkItem.asp?WKI_ID=16167
+
+Typical usage
+-------------
+
+    dumprtp6 <stream IP address> | vpsrecord -p <VBI PID> -t 12:34 > recording.TS
+
+For other uses, see `dumprtp6 --help`.
